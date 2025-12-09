@@ -7,7 +7,7 @@ document.addEventListener("mousemove", (event) => {
     const eyeY = rect.top + rect.height / 2;
 
     const angle = Math.atan2(event.clientY - eyeY, event.clientX - eyeX);
-    const radius = 30; // göz bebeğinin hareket sınırı
+    const radius = 30;
 
     const x = Math.cos(angle) * radius;
     const y = Math.sin(angle) * radius;
