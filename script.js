@@ -1,15 +1,20 @@
-document.addEventListener("mousemove", (event) => {
-  const eyes = document.querySelectorAll(".eye .eyeball");
+const { app, BrowserWindow } = require("electron");
 
-  eyes.forEach((eyeball) => {
-    const rect = eyeball.parentElement.getBoundingClientRect();
-    const eyeX = rect.left + rect.width / 2;
-    const eyeY = rect.top + rect.height / 2;
-
-    const angle = Math.atan2(event.clientX - eyeX, event.clientY - eyeY);
-    const x = Math.sin(angle) * 30;
-    const y = Math.cos(angle) * 30;
-
-    eyeball.style.transform = `translate(${x}px, ${y}px)`;
+function createWindow() {
+  const win = new BrowserWindow({
+    width: 400,            // Gözleri kapsayacak boyut
+    height: 200,
+    transparent: true,     // Pencere şeffaf
+    frame: false,          // Pencere çerçevesiz
+    alwaysOnTop: true,     // Overlay gibi
+    resizable: false,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
   });
-});
+
+  win.loadFile("index.html");
+}
+
+app.whenReady().then(createWindow);
